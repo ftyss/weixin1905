@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('text/ceshi','Text\\TextController@ceshi');
-Route::get('text/redis','Text\\TextController@redis1');
-Route::get('user/adduser','User\\LoginController@addUser');
-Route::get('/wx','Weixin\\WxController@wechat');
+Route::get('/text/ceshi','Text\\TextController@ceshi');
+Route::get('/text/redis','Text\\TextController@redis1');
+Route::get('/user/adduser','User\\LoginController@addUser');
+Route::get('/wx','Weixin\\WxController@wechat');                //微信接入
 
 Route::get('text/baidu','Text\\TextController@baidu');          

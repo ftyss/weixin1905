@@ -9,7 +9,7 @@ class WxController extends Controller
 {
     public function wechat()
     {
-        $token = 'sdjhsfjkdsahfjhvjshfvjksdhcasjkh';
+        $token = 'nsdjsjsajvndsjk';
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
@@ -26,5 +26,11 @@ class WxController extends Controller
             die("not ok");
         }
        
+    }
+
+
+    public function aaa()
+     {
+
     }
 }
