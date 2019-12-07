@@ -18,5 +18,6 @@ Route::get('/', function () {
 Route::get('text/ceshi','Text\\TextController@ceshi');
 Route::get('text/redis','Text\\TextController@redis1');
 Route::get('user/adduser','User\\LoginController@addUser');
+Route::get('/wx','Weixin\\WxController@wechat');
 
-Route::get('text/baidu','Text\\TextController@baidu');
+Route::get('text/baidu','Text\\TextController@baidu');          
