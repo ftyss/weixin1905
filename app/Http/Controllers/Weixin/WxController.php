@@ -9,13 +9,12 @@ class WxController extends Controller
 {
     public function wechat()
     {
-        $token = "sdjhsfjkdsahfjhvjshfvjksdhcasjkh";
+        $token = 'sdjhsfjkdsahfjhvjshfvjksdhcasjkh';
         $signature = $_GET["signature"];
         $timestamp = $_GET["timestamp"];
         $nonce = $_GET["nonce"];
         $echostr = $_GET['echostr'];
 
-        // $token = TOKEN;
         $tmpArr = array($token, $timestamp, $nonce);
         sort($tmpArr, SORT_STRING);
         $tmpStr = implode( $tmpArr );
@@ -26,10 +25,6 @@ class WxController extends Controller
         }else{
             die("not ok");
         }
-        // if( $tmpStr == $signature ){
-        //     return true;
-        // }else{
-        //     return false;
-        // }
+       
     }
 }
