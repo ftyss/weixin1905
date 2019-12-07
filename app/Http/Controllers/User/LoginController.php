@@ -27,11 +27,5 @@ class LoginController extends Controller
         var_dump($uid);
     }
 
-    public function baidu()
-    {
-        $url = 'https://www.baidu.com';
-        $client = new Client();
-        $response = $client->request('GET',$url);
-        echo $response->getBody();
-    }
+    
 }
