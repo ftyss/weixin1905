@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class WxController extends Controller
 {
-    public function wechat()
+    public function weixin()
     {
         $token = 'nsdjsjsajvndsjk';
         $signature = $_GET["signature"];
