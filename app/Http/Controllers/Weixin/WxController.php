@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class WxController extends Controller
 {
+    /**
+     * 微信接口
+     */
     public function weixin()
     {
         $token = 'nsdjsjsajvndsjk';
@@ -28,9 +31,23 @@ class WxController extends Controller
        
     }
 
+    /**
+     * 接收微信推送事件
+     */
+    public function receiv()
+    {
+        $log_file="wx.log";         //默认写在public目录下
+        //将接收到的数据添加到日志中
+        $data=json_encode($_POST);
+        file_get_contents($log_file,$data,FILE_APPEND);     //FILE_APPEND追加写
+    }
 
-    public function aaa()
-     {
 
+    /**
+     * 获取用户基本信息
+     */
+    public function getUserInfo()
+    {
+        $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token=ACCESS_TOKEN&openid=OPENID&lang=zh_CN";
     }
 }
