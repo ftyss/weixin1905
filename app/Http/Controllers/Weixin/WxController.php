@@ -9,7 +9,7 @@ class WxController extends Controller
 {
     protected $access_token;
 
-    public function __construtc()
+    public function __construct()
     {
         //获取access_token
         $this->access_token=$this->getAccessToken();
