@@ -19,7 +19,7 @@ class WxController extends Controller
     {
         $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.env('WX_APPID').'&secret='.env('WX_APPSECRET');
         $data_json=file_get_contents($url);
-        $arr=json_decode($data-json,true);
+        $arr=json_decode($data_json,true);
         return $arr['access_token'];
     }
 
@@ -57,6 +57,7 @@ class WxController extends Controller
         $xml_str=file_get_contents("php://input");
         $data=date('Y-m-d H:i:s') . $xml_str;
         file_put_contents($log_file,$data,FILE_APPEND);     //FILE_APPEND追加写
+        //$xml_arr=simplexml_load_string($xml_str);
 
         //处理xml数据
         $xml_obj=simplexml_load_string($xml_str);
@@ -67,7 +68,8 @@ class WxController extends Controller
 
             //获取用户基本信息
         $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
-        $user_info=file_get_contents('wx_user.log',$user_info,FILE_APPEND);
+        $user_info=file_get_contents($url);
+        file_get_contents('wx_user.log',$user_info,FILE_APPEND);
         }
 
         
@@ -77,7 +79,7 @@ class WxController extends Controller
     /**
      * 获取用户基本信息
      */
-    public function getUserInfo($access_tolen,$openid)
+    public function getUserInfo($access_token,$openid)
     {
         $url="https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN";
         //发送网络请求
