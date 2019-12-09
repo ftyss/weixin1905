@@ -18,6 +18,9 @@ Route::get('/', function () {
 Route::get('/text/ceshi','Text\\TextController@ceshi');
 Route::get('/text/redis','Text\\TextController@redis1');
 Route::get('/user/adduser','User\\LoginController@addUser');
+
+
 Route::get('/wx/jk','Weixin\\WxController@weixin');                //微信接入
+Route::post('/wx/jk','Weixin\\WxController@receiv');
 
 Route::get('text/baidu','Text\\TextController@baidu');          
