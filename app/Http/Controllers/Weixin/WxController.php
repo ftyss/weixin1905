@@ -55,7 +55,7 @@ class WxController extends Controller
         $log_file="wx.log";         //默认写在public目录下
         //将接收到的数据添加到日志中
         $xml_str=file_get_contents("php://input");
-        $data=date('Y-m-d H:i:s') . $xml;
+        $data=date('Y-m-d H:i:s') . $xml_str;
         file_put_contents($log_file,$data,FILE_APPEND);     //FILE_APPEND追加写
 
         //处理xml数据
