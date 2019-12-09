@@ -32,5 +32,20 @@ class TextController extends Controller
         $client = new Client();
         $response = $client->request('GET',$url);
         echo $response->getBody();
-    }
+	}
+	
+
+	public function xmlText()
+	{
+		$xml_str='<xml><ToUserName><![CDATA[gh_dcce247f9947]]></ToUserName>
+		<FromUserName><![CDATA[o8rxRwDiVovnSfnWIr--fH2O4_F0]]></FromUserName>
+		<CreateTime>1575876652</CreateTime>
+		<MsgType><![CDATA[text]]></MsgType>
+		<Content><![CDATA[1]]></Content>
+		<MsgId>22561128938702669</MsgId>
+		</xml>';
+
+		$xml_arr=simplexml_load_string($xml_str);
+		echo '<pre>';print_r($xml_arr);echo '</pre>';
+	}
 }
