@@ -83,6 +83,6 @@ class WxController extends Controller
         //发送网络请求
         $json_obj=file_get_contents($url);
         $log_file="wx_user.log";
-        file_put_contents($log_file,$json_str,FILE_APPEND);
+        file_put_contents($log_file,$json_obj,FILE_APPEND);
     }
 }
