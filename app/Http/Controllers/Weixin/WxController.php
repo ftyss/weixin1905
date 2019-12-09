@@ -38,7 +38,7 @@ class WxController extends Controller
     {
         $log_file="wx.log";         //默认写在public目录下
         //将接收到的数据添加到日志中
-        $data=json_encode($_POST);
+        $data=date('Y-m-d H:i:s') . json_encode($_POST);
         file_put_contents($log_file,$data,FILE_APPEND);     //FILE_APPEND追加写
     }
 
