@@ -66,11 +66,20 @@ class WxController extends Controller
         $event=$xml_obj->Event;         //获取事件类型
         if($event=='subscribe'){
             $openid=$xml_obj->FromUserName;     //获取用户的openid
+            $name=$xml_obj->ToUserName;         //开发者公众号id
+            $time=time();
             //判断用户曾经是否关注过
             $u=WxUserModel::where(['openid'=>$openid])->first();
             if($u){
                 //曾经关注
-                echo "欢迎回家";die;
+                $guanzhuhuifu='<xml>
+                    <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$name.']]></FromUserName>
+                    <CreateTime>'.$time.'</CreateTime>
+                    <MsgType><![CDATA[text]]></MsgType>
+                    <Content><![CDATA[欢迎回家]]></Content>
+                </xml>';
+                echo $guanzhuhuifu;die;
 
             }else{
                 $user_data=[
@@ -81,7 +90,14 @@ class WxController extends Controller
                 //openid 存入数据库
                 $uid=WxUserModel::insertGetId($user_data);
                 var_dump($uid);
-                echo "欢迎关注";
+                $guanzhuhuifus='<xml>
+                    <ToUserName><![CDATA['.$openid.']]></ToUserName>
+                    <FromUserName><![CDATA['.$name.']]></FromUserName>
+                    <CreateTime>'.$time.'</CreateTime>
+                    <MsgType><![CDATA[text]]></MsgType>
+                    <Content><![CDATA[欢迎关注]]></Content>
+                </xml>';
+                echo $guanzhuhuifus;
             }
             
 
