@@ -86,27 +86,29 @@ class WxController extends Controller
                 $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
                 $user_info=file_get_contents($url);
                 $u=json_decode($user_info,true);
-        }
+                $nickname=$u['nickname'];
+              
                 $user_data=[
                     'openid'=>$openid,
                     'nickname'=>$u['nickname'],
                     'sex'=>$u['sex'],
                     'headimgurl'=> $u['headimgurl'],
-                    'subscribe_time'    => $u['subscribe_time']
+                    'subscribe_time' => $u['subscribe_time']
                 ];
     
                 //openid 存入数据库
                 $uid=WxUserModel::insertGetId($user_data);
-                var_dump($uid);
+                $rmj="感谢".$nickname."你的关注";
                 $guanzhuhuifus='<xml>
                     <ToUserName><![CDATA['.$openid.']]></ToUserName>
                     <FromUserName><![CDATA['.$name.']]></FromUserName>
                     <CreateTime>'.$time.'</CreateTime>
                     <MsgType><![CDATA[text]]></MsgType>
-                    <Content><![CDATA[谢谢关注]]></Content>
+                    <Content><![CDATA['.$rmj.']]></Content>
                 </xml>';
                 echo $guanzhuhuifus;
             }
+        }
             
 
             
