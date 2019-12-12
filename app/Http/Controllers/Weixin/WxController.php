@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Weixin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Model\WxUserModel;
 
 class WxController extends Controller
 {
@@ -65,6 +66,25 @@ class WxController extends Controller
         $event=$xml_obj->Event;         //获取事件类型
         if($event=='subscribe'){
             $openid=$xml_obj->FromUserName;     //获取用户的openid
+            //判断用户曾经是否关注过
+            $u=WxUserModel::where(['openid'=>$openid])->first();
+            if($u){
+                //曾经关注
+                echo "欢迎回家";die;
+
+            }else{
+                $user_data=[
+                    'openid'=>$openid,
+                    'sub_time'=>$xml_obj->CreateTime,
+                ];
+    
+                //openid 存入数据库
+                $uid=WxUserModel::insertGetId($user_data);
+                var_dump($uid);
+                echo "欢迎关注";
+            }
+            
+
             //获取用户基本信息
         $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
         $user_info=file_get_contents($url);
@@ -81,11 +101,11 @@ class WxController extends Controller
         if($msg_type=='text'){
             $content=date('Y-m-d H:i:s').$xml_obj->Content;
             $response_text='<xml><ToUserName><![CDATA['.$touser.']]></ToUserName>
-<FromUserName><![CDATA['.$formuser.']]></FromUserName>
-<CreateTime>'.$time.'</CreateTime>
-<MsgType><![CDATA[text]]></MsgType>
-<Content><![CDATA['.$content.']]></Content>
-</xml>';
+                        <FromUserName><![CDATA['.$formuser.']]></FromUserName>
+                        <CreateTime>'.$time.'</CreateTime>
+                        <MsgType><![CDATA[text]]></MsgType>
+                        <Content><![CDATA['.$content.']]></Content>
+                        </xml>';
 
             echo $response_text;
         }
