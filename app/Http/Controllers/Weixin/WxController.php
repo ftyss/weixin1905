@@ -82,9 +82,17 @@ class WxController extends Controller
                 echo $guanzhuhuifu;die;
 
             }else{
+                //获取用户基本信息
+                $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
+                $user_info=file_get_contents($url);
+                $u=json_decode($user_info,true);
+        }
                 $user_data=[
                     'openid'=>$openid,
-                    'sub_time'=>$xml_obj->CreateTime,
+                    'nickname'=>$u['nickname'],
+                    'sex'=>$u['sex'],
+                    'headimgurl'=> $u['headimgurl'],
+                    'subscribe_time' => $u['subscribe_time']
                 ];
     
                 //openid 存入数据库
@@ -101,11 +109,7 @@ class WxController extends Controller
             }
             
 
-            //获取用户基本信息
-        $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
-        $user_info=file_get_contents($url);
-        file_put_contents('wx_user.log',$user_info,FILE_APPEND);
-        }
+            
 
         //回复消息
         $msg_type=$xml_obj->MsgType;
