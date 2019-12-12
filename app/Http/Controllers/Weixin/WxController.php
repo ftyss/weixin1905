@@ -77,7 +77,7 @@ class WxController extends Controller
                     <FromUserName><![CDATA['.$name.']]></FromUserName>
                     <CreateTime>'.$time.'</CreateTime>
                     <MsgType><![CDATA[text]]></MsgType>
-                    <Content><![CDATA[欢迎回家]]></Content>
+                    <Content><![CDATA[欢迎回来]]></Content>
                 </xml>';
                 echo $guanzhuhuifu;die;
 
@@ -95,7 +95,7 @@ class WxController extends Controller
                     <FromUserName><![CDATA['.$name.']]></FromUserName>
                     <CreateTime>'.$time.'</CreateTime>
                     <MsgType><![CDATA[text]]></MsgType>
-                    <Content><![CDATA[欢迎关注]]></Content>
+                    <Content><![CDATA[谢谢关注]]></Content>
                 </xml>';
                 echo $guanzhuhuifus;
             }
