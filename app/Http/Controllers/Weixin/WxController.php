@@ -92,7 +92,7 @@ class WxController extends Controller
                     'nickname'=>$u['nickname'],
                     'sex'=>$u['sex'],
                     'headimgurl'=> $u['headimgurl'],
-                    'subscribe_time' => $u['subscribe_time']
+                    'sub_time' => $u['subscribe_time']
                 ];
     
                 //openid 存入数据库
