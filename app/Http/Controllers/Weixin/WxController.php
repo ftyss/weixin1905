@@ -147,4 +147,17 @@ class WxController extends Controller
         $log_file = 'wx_user.log';
         file_put_contents($log_file,$json_str,FILE_APPEND);
     }
+
+    /**
+     * 获取素材
+     */
+    public function getMedia()
+    {
+        $media_id='Hwk-HRSS-OQdvfxkt4wjqkZwxiFkC3-fVQga5o60F4RaDIL5_lvWnc3JjULDrh2y';
+        $url='https://api.weixin.qq.com/cgi-bin/media/get?access_token='.$this->access.'&media_id='.$media_id;
+        
+        $img=file_get_contents($url);       //下载图片
+        file_put_contents('cat.jpg',$img);  //保存图片
+        echo "下载成功";
+    }
 }
