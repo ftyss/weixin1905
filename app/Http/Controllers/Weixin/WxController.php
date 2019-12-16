@@ -136,13 +136,15 @@ class WxController extends Controller
         $touser=$xml_obj->FromUserName;     //获取用户openid
         $fromuser=$xml_obj->ToUserName;     //开发者公众号的id
         $time=time();
+        $title=$xml_obj->Title;
+        $description=$xml_obj->Description;
 
         $media_id=$xml_obj->MediaId;
 
         if($msg_type=='text'){
             $content=date('Y-m-d H:i:s').$xml_obj->Content;
             $response_text='<xml><ToUserName><![CDATA['.$touser.']]></ToUserName>
-                        <FromUserName><![CDATA['.$formuser.']]></FromUserName>
+                        <FromUserName><![CDATA['.$fromuser.']]></FromUserName>
                         <CreateTime>'.$time.'</CreateTime>
                         <MsgType><![CDATA[text]]></MsgType>
                         <Content><![CDATA['.$content.']]></Content>
@@ -192,8 +194,8 @@ class WxController extends Controller
             <MsgType><![CDATA[video]]></MsgType>
             <Video>
               <MediaId><![CDATA['.$media_id.']]></MediaId>
-              <Title><![CDATA[线下测试]]></Title>
-              <Description><![CDATA[视频内容]]></Description>
+              <Title><![CDATA['.$title.']]></Title>
+              <Description><![CDATA['.$description.']]></Description>
             </Video>
           </xml>';
 
