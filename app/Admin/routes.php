@@ -11,6 +11,6 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
-    $router->resource('users', WxUserController::class);
+    $router->resource('users', WxUserController::class);        //后台用户管理
 
 });
