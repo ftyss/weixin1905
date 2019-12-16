@@ -119,7 +119,7 @@ class WxController extends Controller
                 $guanzhuhuifus='<xml>
                     <ToUserName><![CDATA['.$openid.']]></ToUserName>
                     <FromUserName><![CDATA['.$name.']]></FromUserName>
-                    <CreateTime>'.$time.'</CreateTime>
+                    <CreateTime>'.time().'</CreateTime>
                     <MsgType><![CDATA[text]]></MsgType>
                     <Content><![CDATA['.$rmj.']]></Content>
                 </xml>';
@@ -134,7 +134,7 @@ class WxController extends Controller
         $msg_type=$xml_obj->MsgType;
 
         $touser=$xml_obj->FromUserName;     //获取用户openid
-        $formuser=$xml_obj->ToUserName;     //开发者公众号的id
+        $fromuser=$xml_obj->ToUserName;     //开发者公众号的id
         $time=time();
 
         $media_id=$xml_obj->MediaId;
@@ -240,6 +240,7 @@ class WxController extends Controller
         //获取素材内容
         $client=new Client();
         $response=$client->request('GET',$url);
+        //dd($response);
         //获取文件扩展名
         $f=$response->getHeader('Content-disposition')[0];
         $extension = substr(trim($f,'"'),strpos($f,'.'));
