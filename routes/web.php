@@ -21,7 +21,8 @@ Route::get('/user/adduser','User\\LoginController@addUser');
 Route::get('/text/xml','Text\\TextController@xmlText');
 
 
-Route::get('/wx/jk','Weixin\\WxController@weixin');                //微信接入
+Route::get('/wx/jk','Weixin\\WxController@weixin'); 
+Route::get('/wx/test','Weixin\\WxController@test');               //微信接入
 Route::post('/wx/jk','Weixin\\WxController@receiv');
 Route::get('/wx/media','Weixin\\WxController@getMedia');            //获取素材
 
