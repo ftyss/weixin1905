@@ -81,8 +81,9 @@ class WxController extends Controller
         $xml_obj=simplexml_load_string($xml_str);
 
         $event=$xml_obj->Event;         //获取事件类型
+        $openid=$xml_obj->FromUserName;     //获取用户的openid
         if($event=='subscribe'){
-            $openid=$xml_obj->FromUserName;     //获取用户的openid
+            
             $name=$xml_obj->ToUserName;         //开发者公众号id
             $time=time();
             //判断用户曾经是否关注过
@@ -98,7 +99,7 @@ class WxController extends Controller
                 </xml>';
                 echo $guanzhuhuifu;die;
 
-            }else{
+            }elseif($event=='subscribe'){
                 //获取用户基本信息
                 $url='https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
                 $user_info=file_get_contents($url);
@@ -124,6 +125,16 @@ class WxController extends Controller
                     <Content><![CDATA['.$rmj.']]></Content>
                 </xml>';
                 echo $guanzhuhuifus;
+            }
+        }elseif($event=='CLICK'){
+            if($xml_obj->EventKey=='tianqi'){
+                $response_xml='<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+                <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
+                <CreateTime>'.time().'</CreateTime>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA['.date('Y-m-d H:i:s').'  漫天飞雪'.']]></Content>
+                </xml>';
+                echo $response_xml;
             }
         }
             
