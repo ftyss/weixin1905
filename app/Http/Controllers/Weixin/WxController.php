@@ -126,7 +126,7 @@ class WxController extends Controller
                 </xml>';
                 echo $guanzhuhuifus;
             }
-        }elseif($event=='CLICK'){
+        }elseif($event=='CLICK'){           //点击事件
             if($xml_obj->EventKey=='tianqi'){
                 $response_xml='<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
                 <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
