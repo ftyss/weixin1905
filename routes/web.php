@@ -24,6 +24,8 @@ Route::get('/text/xml','Text\\TextController@xmlText');
 Route::get('/wx/jk','Weixin\\WxController@weixin'); 
 Route::get('/wx/test','Weixin\\WxController@test');               //微信接入
 Route::post('/wx/jk','Weixin\\WxController@receiv');
-Route::get('/wx/media','Weixin\\WxController@getMedia');            //获取素材
+Route::get('/wx/media','Weixin\\WxController@getMedia');        //获取素材
+Route::get('/wx/token','Weixin\\WxController@flushAccessToken');    //刷新token 
+Route::get('/wx/menu','Weixin\\WxController@createMenu');           //创建自定义菜单
 
 Route::get('text/baidu','Text\\TextController@baidu');          

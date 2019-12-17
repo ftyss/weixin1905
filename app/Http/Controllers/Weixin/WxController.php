@@ -265,5 +265,57 @@ class WxController extends Controller
         file_put_contents($save_path,$file_content);
     }
 
+
+    /**
+     * 刷新access_token
+     */
+    public function flushAccessToken()
+    {
+        $key = 'wx_access_token';
+        Redis::del($key);
+        echo $this->getAccessToken();
+    }
+
+    /**
+     * 自定义菜单
+     */
+    public function createMenu()
+    {
+        $url ='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;
+        $menu=[
+            'button'=>[
+                [
+                    'type' => 'click',
+                    'name' => '获取天气',
+                    'key' => 'tianqi'
+                ],
+                [
+                    'name'=>'菜单',
+                    'sub_button'=>[
+                        [
+                            'type' => 'click',
+                            'name' => '战斗一班',
+                            'key' => 'yi'
+                        ],
+                        [
+                            'type' => 'click',
+                            'name' => '战斗两班',
+                            'key' => 'liang'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+
+        $menu_json=json_encode($menu,JSON_UNESCAPED_UNICODE);
+        $client=new Client();
+        $response=$client->request('POST',$url,[
+            'body'=>$menu_json
+        ]);
+        echo '<pre>';print_r($menu);echo '</pre>';
+        echo $response->getBody();      //接收微信接口的响应数据
+    }
+
+   
     
 }
