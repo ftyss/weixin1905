@@ -281,7 +281,7 @@ class WxController extends Controller
      */
     public function createMenu()
     {
-        $url ='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;
+        $url ='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;    //调用接口
         $menu=[
             'button'=>[
                 [

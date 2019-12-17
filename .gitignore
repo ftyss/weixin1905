@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 public/*.log
 public/*.jpg
+public/wx_media
