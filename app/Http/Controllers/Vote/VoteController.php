@@ -29,15 +29,14 @@ class VoteController extends Controller
             Redis::Zadd($key,time(),$openid);
         }
         
+        $total=Redis::zCard($key);          //redis获取投票总人数
+        echo '投票总人数： '.$total;echo '</br>';
         $members=Redis::zRange($key,0,-1,true);         //获取所有投票用户的openid
         echo '<pre>';print_r($members);echo '</pre>';
         foreach($members as $k=>$v){
             echo "用户：".$k .'投票时间：'. date('Y-m-d H:i:s',$v);echo '</br>';
         }
-        // $total=Redis::Scard($key);              //获取投票总人数
-        // echo "   投票总人数： ".$total;
-        // echo '<hr>';
-        // echo '<pre>';print_r($members);echo '</pre>';
+        
     }
 
     /**
