@@ -328,7 +328,7 @@ class WxController extends Controller
             ]
         ];
 
-        $menu_json=json_encode($menu,JSON_UNESCAPED_UNICODE);       //转中文要加第二个参数
+        $menu_json=json_encode($menu,JSON_UNESCAPED_UNICODE);       //中文要加第二个参数
         $client=new Client();
         $response=$client->request('POST',$url,[
             'body'=>$menu_json
