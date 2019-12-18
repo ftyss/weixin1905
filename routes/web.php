@@ -27,5 +27,6 @@ Route::post('/wx/jk','Weixin\\WxController@receiv');
 Route::get('/wx/media','Weixin\\WxController@getMedia');        //获取素材
 Route::get('/wx/token','Weixin\\WxController@flushAccessToken');    //刷新token 
 Route::get('/wx/menu','Weixin\\WxController@createMenu');           //创建自定义菜单
+Route::get('/vote','VoteController@index');           //投票授权
 
 Route::get('text/baidu','Text\\TextController@baidu');          

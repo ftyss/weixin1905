@@ -305,6 +305,11 @@ class WxController extends Controller
      */
     public function createMenu()
     {
+        $url='http://1905.fangtaoys.com/vote';
+        $redirect_uri=urlencode($url);  //授权后跳转页面
+
+
+        //调用自定义菜单接口
         $url ='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;    //调用接口
         $menu=[
             'button'=>[
@@ -317,15 +322,11 @@ class WxController extends Controller
                     'name'=>'菜单',
                     'sub_button'=>[
                         [
-                            'type' => 'click',
-                            'name' => '战斗一班',
-                            'key' => 'yi'
+                            'type' => 'view',
+                            'name' => '投票',
+                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
                         ],
-                        [
-                            'type' => 'click',
-                            'name' => '战斗两班',
-                            'key' => 'liang'
-                        ]
+                       
                     ]
                 ]
             ]
