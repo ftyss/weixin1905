@@ -17,6 +17,10 @@ class VoteController extends Controller
 
         //获取用户信息
         $user_info=$this->getUserInfo($data['access_token'],$data['openid']);
+        //处理业务逻辑
+        $redis_key='vote';
+        $number=Redis::incr($redis_key);
+        echo "投票成功，已得票数".$number;
     }
 
     /**
@@ -36,7 +40,12 @@ class VoteController extends Controller
     {
         $url='https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
         $json_data=file_get_contents($url);
-        $usr_info=json_decode($json_data,true);
-        echo '<pre>';print_r($usr_info);echo '</pre>';
+        $data=json_decode($json_data,true);
+        //echo '<pre>';print_r($usr_info);echo '</pre>';
+        if(isset($data['errcode'])){
+            die("出现错误");        //报错信息
+        }
+        return $usr_info;       //返回用户信息
+
     }    
 }
