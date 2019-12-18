@@ -45,7 +45,7 @@ class VoteController extends Controller
         if(isset($data['errcode'])){
             die("出现错误");        //报错信息
         }
-        return $usr_info;       //返回用户信息
+        return $data;       //返回用户信息
 
     }    
 }
