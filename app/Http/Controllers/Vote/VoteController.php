@@ -21,8 +21,12 @@ class VoteController extends Controller
         
         $openid=$user_info['openid'];
         $key='s:vote:fangtao';
-        Redis::Sadd($key,$openid);
 
+        //判断用户是否已经投过票
+        if(Redis::sIsMember($key,$user_info['openid'])){
+            echo "你已经投过票了，多次投票无效";die;
+        }
+        Redis::Sadd($key,$openid);
         $members=Redis::Smembers($key);         //获取所有投票用户的openid
         $total=Redis::Scard($key);              //获取投票总人数
         echo "投票总人数： ".$total;
