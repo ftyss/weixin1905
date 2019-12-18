@@ -127,7 +127,10 @@ class WxController extends Controller
                 echo $guanzhuhuifus;
             }
         }elseif($event=='CLICK'){           //点击事件
-            if($xml_obj->EventKey=='tianqi'){
+            
+            //echo "123";die;
+
+            if($xml_obj->EventKey=='weather'){
                 $weather_api='https://free-api.heweather.net/s6/weather/now?location=beijing&key=0eced2803331478083c559f863fe4924';
                 $weather_info=file_get_contents($weather_api);
                 $weather_info_arr=json_decode($weather_info,true);
