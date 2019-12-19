@@ -32,8 +32,9 @@
 		</div>
 		<!-- end site brand	 -->
 		<div class="side-nav-panel-right">
-			头像
-		</div>
+			<!-- <a href="#" data-activates="slide-out-right" class="side-nav-left"><i class="fa fa-user"></i></a> -->
+            <img width="50" src="{{$u['headimgurl']}" alt="">
+        </div>
 	</div>
 	<!-- end navbar top -->
 
