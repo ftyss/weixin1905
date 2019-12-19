@@ -26,7 +26,7 @@ class VoteController extends Controller
 
         //判断用户是否已经投过票
         if(Redis::zrank($key,$user_info['openid'])){
-            echo "你已经投过票了，多次投票无效";
+            echo "你已经投过票了，多次投票无效";echo '</br>';
         }else{
             Redis::Zadd($key,time(),$openid);
         }
@@ -42,7 +42,7 @@ class VoteController extends Controller
             $u=Redis::hgetAll($u_k);
             //$u=Redis::hMget($u_k,['openid','nickname','sex','headimgurl']);
             //echo '<pre>';print_r($u);echo '</pre>';
-            echo '<img src="'.$u['headimgurl'].'">'; 
+            echo '<img src="'.$u['headimgurl'].'">'  ; 
         }
         
     }
