@@ -17,8 +17,10 @@ class VoteController extends Controller
 
         //获取用户信息
         $user_info=$this->getUserInfo($data['access_token'],$data['openid']);
+        //保存用户信息
+        $userinfo_key='h:u:'.$data['openid'];
+        Redis::hMset($userinfo_key,$user_info);
         //处理业务逻辑
-        
         $openid=$user_info['openid'];
         $key='ss:vote:fangtao';
 
@@ -32,9 +34,13 @@ class VoteController extends Controller
         $total=Redis::zCard($key);          //redis获取投票总人数
         echo '投票总人数： '.$total;echo '</br>';
         $members=Redis::zRange($key,0,-1,true);         //获取所有投票用户的openid
-        echo '<pre>';print_r($members);echo '</pre>';
+        //echo '<pre>';print_r($members);echo '</pre>';
         foreach($members as $k=>$v){
             echo "用户：".$k .'投票时间：'. date('Y-m-d H:i:s',$v);echo '</br>';
+            $u_k='h:u:'.$k;
+
+            $u=Redia::hMget($u_k,['openod','nickname','sex']);
+            echo '<pre>';print_r($u);echo '</pre>'; 
         }
         
     }
@@ -63,5 +69,7 @@ class VoteController extends Controller
         }
         return $data;       //返回用户信息
 
-    }    
+    }   
+    
+    
 }
