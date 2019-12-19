@@ -307,6 +307,8 @@ class WxController extends Controller
     {
         $url='http://1905.fangtaoys.com/vote';
         $redirect_uri=urlencode($url);  //授权后跳转页面
+        $url2='http://1905.fangtaoys.com';
+        $redirect_uri2=urlencode($url2);  
 
 
         //调用自定义菜单接口
@@ -325,6 +327,11 @@ class WxController extends Controller
                             'type' => 'view',
                             'name' => '投票',
                             'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
+                        ],
+                        [
+                            'type' => 'view',
+                            'name' => '商城',
+                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri2.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
                         ],
                        
                     ]

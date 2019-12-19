@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/','Index\\IndexController@index');
 
 Route::get('/text/ceshi','Text\\TextController@ceshi');
 Route::get('/text/redis','Text\\TextController@redis1');
