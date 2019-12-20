@@ -12,5 +12,6 @@ Route::group([
 
     $router->get('/', 'HomeController@index')->name('admin.home');
     $router->resource('users', WxUserController::class);        //后台用户管理
+    $router->resource('wxmsg', WxMsgController::class);     //后台留言管理
 
 });

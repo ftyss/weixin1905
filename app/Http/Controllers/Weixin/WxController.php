@@ -167,6 +167,19 @@ class WxController extends Controller
 
         if($msg_type=='text'){
             $content=date('Y-m-d H:i:s').$xml_obj->Content;
+            $openid = $xml_obj->FromUserName; 
+            $url = 'https://api.weixin.qq.com/cgi-bin/user/info?access_token='.$this->access_token.'&openid='.$openid.'&lang=zh_CN';
+            $msg_info = file_get_contents($url);       
+            $m = json_decode($msg_info,true);
+            $Msg_data = [
+               'openid' => $openid,
+               'nickname' => $m['nickname'],
+               'content' => $xml_obj->Content,
+           ]; 
+           //openid 入库
+           $uid = WxMsgModel::insertGetId($Msg_data);
+
+
             $response_text='<xml><ToUserName><![CDATA['.$touser.']]></ToUserName>
                         <FromUserName><![CDATA['.$fromuser.']]></FromUserName>
                         <CreateTime>'.$time.'</CreateTime>

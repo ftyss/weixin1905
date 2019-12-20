@@ -31,4 +31,6 @@ Route::get('/wx/token','Weixin\\WxController@flushAccessToken');    //刷新toke
 Route::get('/wx/menu','Weixin\\WxController@createMenu');           //创建自定义菜单
 Route::get('/vote','Vote\\VoteController@index');           //投票授权
 
+Route::get('/goods/details','Goods\\IndexController@index');           //商城商品详情
+
 Route::get('text/baidu','Text\\TextController@baidu');          
