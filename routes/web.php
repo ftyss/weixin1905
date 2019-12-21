@@ -32,5 +32,6 @@ Route::get('/wx/menu','Weixin\\WxController@createMenu');           //创建自�
 Route::get('/vote','Vote\\VoteController@index');           //投票授权
 
 Route::get('/goods/details','Goods\\IndexController@index');           //商城商品详情
+Route::get('/wx/send','Weixin\\SendWeatherController@sendWeather');           //计划任务群发天气
 
 Route::get('text/baidu','Text\\TextController@baidu');          
