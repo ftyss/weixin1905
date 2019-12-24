@@ -29,9 +29,12 @@ Route::post('/wx/jk','Weixin\\WxController@receiv');
 Route::get('/wx/media','Weixin\\WxController@getMedia');        //获取素材
 Route::get('/wx/token','Weixin\\WxController@flushAccessToken');    //刷新token 
 Route::get('/wx/menu','Weixin\\WxController@createMenu');           //创建自定义菜单
-Route::get('/vote','Vote\\VoteController@index');           //投票授权
+Route::get('/wx/qrcode','Weixin\\WxQrcodeController@qrcode');           //创建自定义菜单
+Route::get('/wx/newyear','Weixin\\WxController@newYear');           //创建自定义菜单
+
 
 Route::get('/goods/details','Goods\\IndexController@index');           //商城商品详情
 Route::get('/wx/send','Weixin\\SendWeatherController@sendWeather');           //计划任务群发天气
+Route::get('/vote','Vote\\VoteController@index');           //投票授权
 
 Route::get('text/baidu','Text\\TextController@baidu');          

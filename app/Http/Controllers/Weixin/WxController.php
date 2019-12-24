@@ -8,6 +8,7 @@ use App\Model\WxUserModel;
 use Illuminate\Support\Facades\Redis;
 use GuzzleHttp\Client;
 use App\Model\WxMsgModel;
+use Illuminate\Support\Str;
 
 
 class WxController extends Controller
@@ -360,6 +361,40 @@ class WxController extends Controller
         ]);
         echo '<pre>';print_r($menu);echo '</pre>';
         echo $response->getBody();      //接收微信接口的响应数据
+    }
+
+    /**
+     * jssdk分享
+     */
+    public function newYear()
+    {
+        //dd($_SERVER);
+        $wx_appid=env('WX_APPID');
+        $noncestr=Str::random(10);
+        $timestamp=time();
+        $url = env('APP_URL') . $_SERVER['REQUEST_URI'];    //获取当前页面的URL
+        $signature=$this->signature($noncestr,$timestamp,$url);
+        $data=[
+            'appid'=>$wx_appid,
+            'timestamp'=>$timestamp,
+            'noncestr'=>$noncestr,
+            'signature'=>$signature
+        ];
+        return view('Weixin.newyear',$data);
+    }
+
+    /**
+     * 计算签名
+     */
+    public function signature($noncestr,$timestamp,$url)
+    {
+        $noncestr = $noncestr;
+        // 1 获取 jsapi ticket
+        $ticket = WxUserModel::getJsapiTicket();
+        // 拼接带签名的字符串
+        $string1 = "jsapi_ticket={$ticket}&noncestr={$noncestr}&timestamp={$timestamp}&url={$url}";
+        // sha1加密
+        return  sha1($string1);
     }
 
    
