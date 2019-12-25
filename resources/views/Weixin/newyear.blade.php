@@ -27,7 +27,7 @@
                     title: '元旦大促销', // 分享标题
                     desc: '听说的', // 分享描述
                     link: 'http://1905.fangtaoys.com/wx/newyear', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                    imgUrl: 'http://1905.fangtaoys.com/img/duang.jpg', // 分享图标
+                    imgUrl: 'http://1905.fangtaoys.com/img/dd.jpg', // 分享图标
                     success: function () {
                     // 设置成功
                     }
@@ -39,7 +39,7 @@
                 wx.updateTimelineShareData({ 
                     title: '元旦大促销', // 分享标题
                     link: 'http://1905.fangtaoys.com/wx/newyear', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-                    imgUrl: 'http://1905.fangtaoys.com/img/duang.jpg', // 分享图标
+                    imgUrl: 'http://1905.fangtaoys.com/img/dd.jpg', // 分享图标
                     success: function () {
                     // 设置成功
                     }
