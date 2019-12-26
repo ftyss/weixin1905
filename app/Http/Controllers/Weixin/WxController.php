@@ -119,6 +119,7 @@ class WxController extends Controller
                 //openid 存入数据库
                 $uid=WxUserModel::insertGetId($user_data);
                 $rmj="感谢".$nickname."你的关注";
+                //$rmj="欢迎".$nickname."同学进入选课系统";
                 $guanzhuhuifus='<xml>
                     <ToUserName><![CDATA['.$openid.']]></ToUserName>
                     <FromUserName><![CDATA['.$name.']]></FromUserName>
