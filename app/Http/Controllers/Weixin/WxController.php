@@ -151,6 +151,15 @@ class WxController extends Controller
                 <Content><![CDATA['.date('Y-m-d H:i:s').$msg.']]></Content>
                 </xml>';
                 echo $response_xml;
+            }elseif($xml_obj->EventKey=='course'){
+                $msg='你好，同学，你的课程安排如下    第一节：语文   第二节：数学   第三节：英语';
+                $response_xml='<xml><ToUserName><![CDATA['.$openid.']]></ToUserName>
+                <FromUserName><![CDATA['.$xml_obj->ToUserName.']]></FromUserName>
+                <CreateTime>'.time().'</CreateTime>
+                <MsgType><![CDATA[text]]></MsgType>
+                <Content><![CDATA['.$msg.']]></Content>
+                </xml>';
+                echo $response_xml;
             }
         }
             
