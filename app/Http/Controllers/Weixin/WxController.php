@@ -321,44 +321,71 @@ class WxController extends Controller
      */
     public function createMenu()
     {
-        $url='http://1905.fangtaoys.com/vote';
+        // $url='http://1905.fangtaoys.com/vote';
+        // $redirect_uri=urlencode($url);  //授权后跳转页面
+        // $url2='http://1905.fangtaoys.com';
+        // $redirect_uri2=urlencode($url2);  
+
+
+        // //调用自定义菜单接口
+        // $url ='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;    //调用接口
+        // $menu=[
+        //     'button'=>[
+        //         [
+        //             'type' => 'click',
+        //             'name' => '获取天气',
+        //             'key' => 'weather'
+        //         ],
+        //         [
+        //             'name'=>'菜单',
+        //             'sub_button'=>[
+        //                 [
+        //                     'type' => 'view',
+        //                     'name' => '投票',
+        //                     'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
+        //                 ],
+        //                 [
+        //                     'type' => 'view',
+        //                     'name' => '商城',
+        //                     'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri2.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
+        //                 ],
+                       
+        //             ]
+        //         ]
+        //     ]
+        // ];
+
+        // $menu_json=json_encode($menu,JSON_UNESCAPED_UNICODE);       //中文要加第二个参数
+        // $client=new Client();
+        // $response=$client->request('POST',$url,[
+        //     'body'=>$menu_json
+        // ]);
+        // echo '<pre>';print_r($menu);echo '</pre>';
+        // echo $response->getBody();      //接收微信接口的响应数据
+
+
+        $url='http://1905.fangtaoys.com/course';
         $redirect_uri=urlencode($url);  //授权后跳转页面
-        $url2='http://1905.fangtaoys.com';
-        $redirect_uri2=urlencode($url2);  
-
-
-        //调用自定义菜单接口
         $url ='https://api.weixin.qq.com/cgi-bin/menu/create?access_token='.$this->access_token;    //调用接口
         $menu=[
             'button'=>[
                 [
-                    'type' => 'click',
-                    'name' => '获取天气',
-                    'key' => 'weather'
+                     'type' => 'click',
+                     'name' => '查看课程',
+                     'key' => 'course'
                 ],
                 [
-                    'name'=>'菜单',
-                    'sub_button'=>[
-                        [
-                            'type' => 'view',
-                            'name' => '投票',
-                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
-                        ],
-                        [
-                            'type' => 'view',
-                            'name' => '商城',
-                            'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri2.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
-                        ],
-                       
-                    ]
-                ]
+                    'type' => 'view',
+                    'name' => '管理课程',
+                    'url' => 'https://open.weixin.qq.com/connect/oauth2/authorize?appid='.env('WX_APPID').'&redirect_uri='.$redirect_uri.'&response_type=code&scope=snsapi_userinfo&state=asd123#wechat_redirect'
+               ]
             ]
         ];
 
         $menu_json=json_encode($menu,JSON_UNESCAPED_UNICODE);       //中文要加第二个参数
         $client=new Client();
         $response=$client->request('POST',$url,[
-            'body'=>$menu_json
+             'body'=>$menu_json
         ]);
         echo '<pre>';print_r($menu);echo '</pre>';
         echo $response->getBody();      //接收微信接口的响应数据
